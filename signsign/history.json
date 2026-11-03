@@ -1,0 +1,18 @@
+[
+  {"no": "001", "date": "2026-10-04", "country": "Switzerland", "country_ja": "スイス", "headline": "線路横断禁止", "headline_en": "NO CROSSING", "languages": ["Italian", "English", "French", "German"]},
+  {"no": "002", "date": "2026-10-18", "country": "Laos", "country_ja": "ラオス", "headline": "止まれ", "headline_en": "STOP", "languages": ["Lao"]},
+  {"no": "003", "date": "2026-10-18", "country": "Peru", "country_ja": "ペルー", "headline": "橋", "headline_en": "BRIDGE", "languages": ["Spanish", "Quechua"]},
+  {"no": "004", "date": "2026-10-19", "country": "Bolivia", "country_ja": "ボリビア", "headline": "小道", "headline_en": "PATH", "languages": ["Aymara"]},
+  {"no": "005", "date": "2026-10-20", "country": "Paraguay", "country_ja": "パラグアイ", "headline": "移民局", "headline_en": "IMMIGRATION", "languages": ["Guaraní", "Spanish"]},
+  {"no": "006", "date": "2026-10-22", "country": "Norway", "country_ja": "ノルウェー", "headline": "役場", "headline_en": "TOWN HALL", "languages": ["Northern Sámi", "Norwegian"]},
+  {"no": "007", "date": "2026-10-23", "country": "Iceland", "country_ja": "アイスランド", "headline": "危険", "headline_en": "DANGER", "languages": ["Icelandic", "English"]},
+  {"no": "008", "date": "2026-10-24", "country": "Luxembourg", "country_ja": "ルクセンブルク", "headline": "最大15分", "headline_en": "15 MINUTES MAX", "languages": ["French", "German", "Portuguese"]},
+  {"no": "009", "date": "2026-10-25", "country": "South Korea", "country_ja": "韓国", "headline": "税金還付", "headline_en": "TAX REFUND", "languages": ["Korean", "Chinese", "Japanese", "English"]},
+  {"no": "010", "date": "2026-10-26", "country": "Egypt", "country_ja": "エジプト", "headline": "出口", "headline_en": "EXIT", "languages": ["English", "Arabic"]},
+  {"no": "011", "date": "2026-10-27", "country": "Canada", "country_ja": "カナダ", "headline": "眼科", "headline_en": "EYE CLINIC", "languages": ["English", "French", "Chipewyan", "Cree", "Tłı̨chǫ", "Gwich'in", "Inuinnaqtun", "Inuvialuktun", "North Slavey", "South Slavey"]},
+  {"no": "012", "date": "2026-10-28", "country": "New Zealand", "country_ja": "ニュージーランド", "headline": "降車", "headline_en": "DISMOUNT", "languages": ["English", "Māori"]},
+  {"no": "013", "date": "2026-10-29", "country": "South Africa", "country_ja": "南アフリカ", "headline": "自己責任", "headline_en": "AT OWN RISK", "languages": ["English", "Afrikaans", "Xhosa"]},
+  {"no": "014", "date": "2026-10-30", "country": "India", "country_ja": "インド(ムンバイ)", "headline": "ネルール駅", "headline_en": "NERUL", "languages": ["Marathi", "Hindi", "English"]},
+  {"no": "015", "date": "2026-11-01", "country": "Finland", "country_ja": "フィンランド", "headline": "工事現場", "headline_en": "CONSTRUCTION SITE", "languages": ["Finnish", "Swedish"]},
+  {"no": "016", "date": "2026-11-02", "country": "Belgium", "country_ja": "ベルギー", "headline": "静穏区域", "headline_en": "QUIET ZONE", "languages": ["French", "German", "Dutch"]}
+]
