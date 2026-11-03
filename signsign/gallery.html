@@ -1,0 +1,692 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Sign.Sign Drafts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans:wght@400;500;700&family=Noto+Sans+Arabic:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Sans+Lao:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17181c;
+    --paper:#dedad1;
+    --surface:#f4f2ec;
+    --muted:#6c695f;
+    --line:#c7c3b7;
+    --accent:#ff5a1f;
+    --card-accent:#ff5a1f;
+    color-scheme: light;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#f1efe8;
+      --paper:#1c1d21;
+      --surface:#232429;
+      --muted:#9b978c;
+      --line:#35363c;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#f1efe8;
+    --paper:#1c1d21;
+    --surface:#232429;
+    --muted:#9b978c;
+    --line:#35363c;
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    padding-inline: clamp(16px, 4vw, 48px);
+    padding-block: 32px;
+  }
+
+  header{
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .eyebrow{
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  h1{
+    font-family: 'Archivo Black', 'IBM Plex Mono', sans-serif;
+    font-size: clamp(28px, 5vw, 44px);
+    margin: 6px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+  header p{
+    margin: 0;
+    max-width: 65ch;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .grid{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .card{
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 22px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow: hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; right:0;
+    width:0; height:0;
+    border-style: solid;
+    border-width: 0 34px 34px 0;
+    border-color: transparent var(--card-accent) transparent transparent;
+  }
+
+  .photo{
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--line);
+  }
+  .mockup{
+    width: 100%;
+    display: block;
+    border: 1px solid var(--line);
+  }
+  .mockup-label{
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: -6px;
+  }
+  .credit{
+    font-size: 9.5px;
+    color: var(--muted);
+    opacity: 0.75;
+    margin-top: -6px;
+  }
+
+  .headline{
+    font-family: 'Archivo Black', 'IBM Plex Mono', sans-serif;
+    font-size: clamp(30px, 6vw, 40px);
+    line-height: 1.02;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .translations{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .t-line{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .t-lang{
+    flex: 0 0 auto;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    flex: 0 0 7em;
+  }
+  .t-word{
+    font-family: 'Noto Sans', 'IBM Plex Mono', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .meta-row{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 10px;
+    border-top: 1px dashed var(--line);
+    padding-top: 12px;
+    margin-top: auto;
+  }
+  .country{
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tag{
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--card-accent);
+    border: 1px solid var(--card-accent);
+    padding: 3px 7px;
+    white-space: nowrap;
+  }
+
+  .notes{
+    font-size: 11.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .notes b{ color: var(--ink); font-weight: 600; }
+  .source{
+    font-size: 10.5px;
+    color: var(--muted);
+    opacity: 0.8;
+  }
+
+  .dl{
+    font: 600 11px 'IBM Plex Mono', ui-monospace, monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  .dl:hover{ background: var(--ink); color: var(--surface); }
+  .dl:disabled{ opacity: .5; cursor: default; }
+
+
+  .entry{display:flex;flex-direction:column;gap:10px;min-width:0}
+  .entry.wide{grid-column:1/-1;background:var(--surface);border:1px solid var(--line);padding:22px;gap:16px}
+  .day-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .pair figure{margin:0;display:flex;flex-direction:column;gap:10px}
+  .shot{width:100%;display:block;border:1px solid var(--line)}
+  .copy{background:var(--surface);border:1px dashed var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+  .entry.wide .copy{background:transparent}
+  .copy-h{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.1em;color:var(--muted)}
+  .copy pre{margin:0;white-space:pre-wrap;word-break:break-word;font:12px/1.65 'Noto Sans JP','IBM Plex Mono',sans-serif;color:var(--ink)}
+  .cp{font:600 10px 'IBM Plex Mono',monospace;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:5px 9px;cursor:pointer}
+  .cp:hover{background:var(--ink);color:var(--surface)}
+  footer{
+    max-width: 1100px;
+    margin: 32px auto 0;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head><body>
+
+<header>
+  <div class="eyebrow">sign.sign · 社内用</div>
+  <h1>毎日のサイン案</h1>
+  <p>世界各地の多言語サインから、毎日ひとつ案をつくります。見出しは日本語、各言語の表記はサインに実在するそのままです。表記はネイティブチェック前のため、使う前に必ず確認してください。</p>
+</header>
+
+<div class="grid">
+
+  <div class="entry">
+  <article class="card" data-no="001" style="--card-accent:#e8a400;">
+    <img class="photo" src="/_blob/be92dc2780fb43e127c7d9925ea53458" alt="Trackside warning sign at Airolo railway station, Switzerland, reading the crossing warning in Italian, English, French and German">
+    <div class="credit">Photo: Valanagut, Airolo station 2019 — Wikimedia Commons, CC BY-SA 4.0</div>
+    <div class="headline">線路横断禁止</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">イタリア語</span><span class="t-word">Vietato traversare i binari</span></div>
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Do not cross the railway lines</span></div>
+      <div class="t-line"><span class="t-lang">フランス語</span><span class="t-word">Défense de traverser les voies</span></div>
+      <div class="t-line"><span class="t-lang">ドイツ語</span><span class="t-word">Überschreiten der Gleise verboten</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">スイス</span>
+      <span class="tag">Draft · 2026-10-04</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇨🇭 スイス・ゴッタルド線アイロロ駅の線路脇にあった警告標識。
+イタリア語・英語・フランス語・ドイツ語の4言語で書かれています。
+和訳:線路を横断してはいけません
+
+【併記の理由】イタリア語圏の駅。国語4つに英語を添える
+
+Photo: Valanagut — Wikimedia Commons, CC BY-SA 4.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="002" style="--card-accent:#d2391e;">
+    <img class="photo" src="/_blob/43769b722d3f81b5c26a9cd733ed696d" alt="Octagonal red road stop sign in Vientiane, Laos, with the single Lao word ຢຸດ in white lettering">
+    <div class="credit">Photo: Dragfyre, Vientiane 2009 — Wikimedia Commons, CC BY-SA 3.0</div>
+    <div class="headline">止まれ</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">ラオス語</span><span class="t-word" style="font-family:'Noto Sans Lao','Noto Sans',sans-serif;">ຢຸດ</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">ラオス</span>
+      <span class="tag">Draft · 2026-10-18</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇱🇦 ラオスの首都ビエンチャンで見つけた八角形の一時停止標識。
+ラオス語で書かれています。
+和訳:止まれ
+
+【併記の理由】公用語はラオス語。旧仏領でフランス語も残る
+
+Photo: Dragfyre — Wikimedia Commons, CC BY-SA 3.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="003" style="--card-accent:#1f4e9c;">
+    <img class="photo" src="/_blob/1d16a7a0a96c568b0326eda3c62a5bee" alt="Blue municipal street sign in Cusco, Peru, reading PTE. ROSARIO above ROSARIO CHAKA, with the Municipalidad Prov. del Cusco sun-face emblem">
+    <div class="credit">Photo: AgainErick, Cusco 2009 — Wikimedia Commons, CC BY-SA 3.0</div>
+    <div class="headline">橋</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">スペイン語</span><span class="t-word">Pte. Rosario (Puente Rosario)</span></div>
+      <div class="t-line"><span class="t-lang">ケチュア語</span><span class="t-word">Rosario Chaka</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">ペルー</span>
+      <span class="tag">Draft · 2026-10-18</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇵🇪 ペルー・クスコの街角で見つけた通り名のプレート。
+スペイン語・ケチュア語の2言語で書かれています。
+和訳:ロサリオ橋(「橋」を意味するケチュア語 chaka)
+
+【併記の理由】公用語のスペイン語と、インカ由来のケチュア語
+
+Photo: AgainErick — Wikimedia Commons, CC BY-SA 3.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="004" style="--card-accent:#b5532a;">
+    <img class="photo" src="/_blob/7c0879482d3d25cf8724e720e17ed014" alt="Collage of a community assembly in the Bolivian highlands above two hand-painted blue-on-white path signs on adobe walls reading QALASASAY THAKHI and CHALLA PAT THAKHI">
+    <div class="credit">Photo: Eliasquispe, Provincia Los Andes, La Paz Dept. 2014 — Wikimedia Commons, CC BY-SA 3.0</div>
+    <div class="headline">小道</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">アイマラ語</span><span class="t-word">Qalasasay thakhi</span></div>
+      <div class="t-line"><span class="t-lang">アイマラ語</span><span class="t-word">Challa pat thakhi</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">ボリビア</span>
+      <span class="tag">Draft · 2026-10-19</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇧🇴 ボリビア高地の土壁に手描きされていたアイマラ語の道しるべ。
+アイマラ語で書かれています。
+和訳:道(小道)
+
+【併記の理由】憲法が先住民言語36語を公用語に認定
+
+Photo: Eliasquispe — Wikimedia Commons, CC BY-SA 3.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="005" style="--card-accent:#1b6b4a;">
+    <img class="photo" src="/_blob/9b2aae78fe4d8f03cb6880a067d06c4a" alt="White government sign in Asunción, Paraguay, with the national seal and the Guaraní and Spanish names of the Dirección General de Migraciones">
+    <div class="credit">Photo: Mx. Granger, Asunción 2017 — Wikimedia Commons, CC0</div>
+    <div class="headline">移民局</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">グアラニー語</span><span class="t-word">Moakãhapavẽ jeva rehegua</span></div>
+      <div class="t-line"><span class="t-lang">スペイン語</span><span class="t-word">Dirección General de Migraciones</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">パラグアイ</span>
+      <span class="tag">Draft · 2026-10-20</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇵🇾 パラグアイ・アスンシオンの官庁にあった標識。スペイン語とグアラニー語が並びます。
+グアラニー語・スペイン語の2言語で書かれています。
+和訳:内務省 移民総局
+
+【併記の理由】スペイン語とグアラニー語がともに公用語
+
+Photo: Mx. Granger — Wikimedia Commons, CC0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="006" style="--card-accent:#8c1c25;">
+    <img class="photo" src="/_blob/61527d9c5c825465398ccb71ff9ebda5" alt="Weathered wooden sign with the municipal crest above the entrance of the red municipal building in Kautokeino, Norway, reading Guovdageainnu suohkan and Kautokeino kommune">
+    <div class="credit">Photo: Gálaniitoluodda, Kautokeino 2012 — Wikimedia Commons, CC BY-SA 3.0</div>
+    <div class="headline">役場</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">北サーミ語</span><span class="t-word">Guovdageainnu suohkan</span></div>
+      <div class="t-line"><span class="t-lang">ノルウェー語</span><span class="t-word">Kautokeino kommune</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">ノルウェー</span>
+      <span class="tag">Draft · 2026-10-22</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇳🇴 ノルウェー北部カウトケイノの役場に掲げられた木の看板。サーミ語が先に書かれています。
+北サーミ語・ノルウェー語の2言語で書かれています。
+和訳:カウトケイノ町役場
+
+【併記の理由】先住民サーミの言語権を認めた地域のため
+
+Photo: Gálaniitoluodda — Wikimedia Commons, CC BY-SA 3.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="007" style="--card-accent:#1f5fa8;">
+    <img class="photo" src="/_blob/15f1221357bf934a6330026df4ceca54" alt="Blue Icelandic and English warning sign at the Sólheimajökull glacier, Iceland, warning of natural hazard, calving and unstable glacier, with a falling-ice pictogram and a crossed-out walking figure">
+    <div class="credit">Photo: Hyppolyte de Saint-Rambert, Sólheimajökull 2019 — Wikimedia Commons, CC BY-SA 4.0</div>
+    <div class="headline">危険</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">アイスランド語</span><span class="t-word">Varúð náttúruvá! Hætta á hruni úr jöklinum. Farið ekki lengra</span></div>
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Attention natural hazard! Calving and unstable glacier. Do not pass this point</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">アイスランド</span>
+      <span class="tag">Draft · 2026-10-23</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇮🇸 アイスランドのソゥルヘイマヨークトル氷河にあった安全標識。
+アイスランド語・英語の2言語で書かれています。
+和訳:注意 自然災害の危険。氷河が崩れる恐れがあります。これより先へ進まないでください
+
+【併記の理由】公用語のアイスランド語と観光客向けの英語
+
+Photo: Hyppolyte de Saint-Rambert — Wikimedia Commons, CC BY-SA 4.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="008" style="--card-accent:#8a8f98;">
+    <img class="photo" src="/_blob/a39b9a966c5b89ce0e22edfcac1ae63d" alt="Brushed-steel public toilet notice in Walferdange, Luxembourg, with French, German and Portuguese blocks, each headed by a flag, stating cleaning, child-accompaniment and a 15-minute maximum use time">
+    <div class="credit">Photo: Jwh, Walferdange 2016 — Wikimedia Commons, CC BY-SA 3.0 lu</div>
+    <div class="headline">最大15分</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">フランス語</span><span class="t-word">Temps maximum d’utilisation : 15 minutes</span></div>
+      <div class="t-line"><span class="t-lang">ドイツ語</span><span class="t-word">Maximale Nutzungszeit : 15 Minuten</span></div>
+      <div class="t-line"><span class="t-lang">ポルトガル語</span><span class="t-word">Tempo de utilização máximo : 15 minutos</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">ルクセンブルク</span>
+      <span class="tag">Draft · 2026-10-24</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇱🇺 ルクセンブルク・ヴァルフェルダンジュの公衆トイレにあった案内。
+フランス語・ドイツ語・ポルトガル語の3言語で書かれています。
+和訳:最大利用時間:15分
+
+【併記の理由】公用語に加え、最大の移民ポルトガル語も併記
+
+Photo: Jwh — Wikimedia Commons, CC BY-SA 3.0 lu</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="009" style="--card-accent:#00a3a1;">
+    <img class="photo" src="/_blob/4e91bc4eac5c55ce64d3ec5632ac0756" alt="Overhead dark-grey directional sign in the airside concourse of Gimpo Airport, Seoul, reading Tax Free, Tax Refund in Korean, Chinese, Japanese and English, with an arrow pointing left">
+    <div class="credit">Photo: Ken Eckert, Gimpo Airport, Seoul 2015 — Wikimedia Commons, CC BY-SA 4.0</div>
+    <div class="headline">税金還付</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">韓国語</span><span class="t-word" style="font-family:'Noto Sans KR','Noto Sans',sans-serif;">부가세 환급</span></div>
+      <div class="t-line"><span class="t-lang">中国語</span><span class="t-word" style="font-family:'Noto Sans SC','Noto Sans',sans-serif;">退税服务</span></div>
+      <div class="t-line"><span class="t-lang">日本語</span><span class="t-word" style="font-family:'Noto Sans JP','Noto Sans',sans-serif;">タックスリファンド</span></div>
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Tax Refund</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">韓国</span>
+      <span class="tag">Draft · 2026-10-25</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇰🇷 ソウル・金浦空港の免税エリアで見つけた案内標識。
+韓国語・中国語・日本語・英語の4言語で書かれています。
+和訳:付加価値税の還付(タックスリファンド)
+
+【併記の理由】主な旅行者の中国語・日本語・英語に対応
+
+Photo: Ken Eckert — Wikimedia Commons, CC BY-SA 4.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="010" style="--card-accent:#1c2f7a;">
+    <img class="photo" src="/_blob/dfcaee5479a435c525b2ddff30ead416" alt="Dark-blue directional sign in Attaba metro station, Cairo, headed Exit and the Arabic word خروج with a right arrow, listing Attaba Square, Bus Station, El Talia Theatre and other exits in English and Arabic">
+    <div class="credit">Photo: David Lisbona, Attaba metro station, Cairo 2007 — Wikimedia Commons, CC BY 2.0</div>
+    <div class="headline">出口</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Exit</span></div>
+      <div class="t-line"><span class="t-lang">アラビア語</span><span class="t-word" dir="rtl" style="font-family:'Noto Sans Arabic','Noto Sans',sans-serif;">خروج</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">エジプト</span>
+      <span class="tag">Draft · 2026-10-26</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇪🇬 カイロ地下鉄アタバ駅の出口案内。
+英語・アラビア語の2言語で書かれています。
+和訳:出口
+
+【併記の理由】公用語のアラビア語と、観光・ビジネス用の英語
+
+Photo: David Lisbona — Wikimedia Commons, CC BY 2.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="011" style="--card-accent:#b5471b;">
+    <img class="photo" src="/_blob/522ab6e1617a31b33e235eaa5a5e9bac" alt="Cream wall-mounted sign with a rust-orange arch and building logo above the words Eye Clinic and its equivalents in French and the Indigenous official languages of the Northwest Territories, at a government eye clinic in Yellowknife">
+    <div class="credit">Photo: Daniel Case, Yellowknife 2015 — Wikimedia Commons, CC BY-SA 3.0</div>
+    <div class="headline">眼科</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Eye Clinic</span></div>
+      <div class="t-line"><span class="t-lang">フランス語</span><span class="t-word">Service de consultations ophtalmologiques</span></div>
+      <div class="t-line"><span class="t-lang">チペワイアン語</span><span class="t-word">Dënenaghę́net'į kųę́</span></div>
+      <div class="t-line"><span class="t-lang">クリー語</span><span class="t-word">Miskīsikwa Ka-wapatamihk Ita</span></div>
+      <div class="t-line"><span class="t-lang">ドグリブ語</span><span class="t-word">Dǫ Weda K'ahota K'è</span></div>
+      <div class="t-line"><span class="t-lang">グウィッチン語</span><span class="t-word">Dìndèe Hah Tr'òo'aıı Dèek'ıt</span></div>
+      <div class="t-line"><span class="t-lang">イヌイナクトゥン語</span><span class="t-word">Iyiliqivik</span></div>
+      <div class="t-line"><span class="t-lang">イヌヴィアルクトゥン語</span><span class="t-word">ELIKEYIT</span></div>
+      <div class="t-line"><span class="t-lang">北スレイヴィー語</span><span class="t-word">Denedá Ghálakeyeda K'é</span></div>
+      <div class="t-line"><span class="t-lang">南スレイヴィー語</span><span class="t-word">Gndaa K'aneta K'éh</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">カナダ</span>
+      <span class="tag">Draft · 2026-10-27</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇨🇦 カナダ・ノースウエスト準州イエローナイフの官公庁にあった標識。準州の公用語が並びます。
+英語・フランス語など10言語で書かれています。
+和訳:眼科クリニック
+
+【併記の理由】先住民言語を公用語とする北西準州のため
+
+Photo: Daniel Case — Wikimedia Commons, CC BY-SA 3.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="012" style="--card-accent:#f2a900;">
+    <img class="photo" src="/_blob/410e2b68071e5b564014ce0acf767fa9" alt="White bilingual warning board on a cycle path at Petone, Wellington, with amber panels reading Dismount!, Tidal Zone and If Flooded No Entry, each with a Māori line, plus a 1.81 m headroom pictogram of a person pushing a bicycle">
+    <div class="credit">Photo: Wainuio, Petone, Wellington 2023 — Wikimedia Commons, CC BY-SA 4.0</div>
+    <div class="headline">降車</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Dismount!</span></div>
+      <div class="t-line"><span class="t-lang">マオリ語</span><span class="t-word">Heke iho ki raro</span></div>
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Tidal Zone</span></div>
+      <div class="t-line"><span class="t-lang">マオリ語</span><span class="t-word">Te Ara o Hinekirikiri</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">ニュージーランド</span>
+      <span class="tag">Draft · 2026-10-28</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇳🇿 ニュージーランド・ウェリントンの自転車道にあった注意看板。
+英語・マオリ語の2言語で書かれています。
+和訳:自転車から降りてください!/潮の影響を受ける区間
+
+【併記の理由】マオリ語は公用語。言語復興のため併記
+
+Photo: Wainuio — Wikimedia Commons, CC BY-SA 4.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="013" style="--card-accent:#0a9de0;">
+    <img class="photo" src="/_blob/3968d299eadc93015dc84f02688b94e2" alt="Blue and white Shark Spotting Programme board at Noordhoek Beach, South Africa, with a flag warning system of green, black, red and white shark flags and the line Use of ocean at own risk in English, Afrikaans and Xhosa">
+    <div class="credit">Photo: Olga Ernst, Noordhoek Beach 2015 — Wikimedia Commons, CC BY-SA 4.0</div>
+    <div class="headline">自己責任</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Use of ocean at own risk</span></div>
+      <div class="t-line"><span class="t-lang">アフリカーンス語</span><span class="t-word">Gebruik die oseaan op eie risiko</span></div>
+      <div class="t-line"><span class="t-lang">コサ語</span><span class="t-word">Ulwandle ulusebenzisa ngobakho ubutyala</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">南アフリカ</span>
+      <span class="tag">Draft · 2026-10-29</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇿🇦 南アフリカ・ケープ半島のビーチにあった、サメ監視の案内板。
+英語・アフリカーンス語・コサ語の3言語で書かれています。
+和訳:海の利用は自己責任で
+
+【併記の理由】11公用語のうち、地域で多い3言語
+
+Photo: Olga Ernst — Wikimedia Commons, CC BY-SA 4.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="014" style="--card-accent:#0a8f6a;">
+    <img class="photo" src="/_blob/9305ae97f5f61a91dc8342a0840648dd" alt="Diamond-shaped white platform board at Nerul station on the Mumbai suburban railway, with a green ring and blue bar, the name in Marathi above, Hindi in the bar and NERUL in English below">
+    <div class="credit">Photo: Superfast1111, Nerul station 2010 — Wikimedia Commons, CC BY-SA 3.0</div>
+    <div class="headline">ネルール駅</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">マラーティー語</span><span class="t-word" style="font-family:'Noto Sans Devanagari','Noto Sans',sans-serif;">नेरूळ</span></div>
+      <div class="t-line"><span class="t-lang">ヒンディー語</span><span class="t-word" style="font-family:'Noto Sans Devanagari','Noto Sans',sans-serif;">नेरूल</span></div>
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">NERUL</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">インド(ムンバイ)</span>
+      <span class="tag">Draft · 2026-10-30</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇮🇳 ムンバイ近郊鉄道ネルール駅のホームにあった駅名標。
+マラーティー語・ヒンディー語・英語の3言語で書かれています。
+和訳:ネルール駅(ムンバイ近郊鉄道)
+
+【併記の理由】州語マラーティー語と国語ヒンディー語、英語
+
+Photo: Superfast1111 — Wikimedia Commons, CC BY-SA 3.0</pre></div>
+  </div>
+  <div class="entry">
+  <article class="card" data-no="015" style="--card-accent:#e0a800;">
+    <img class="photo" src="/_blob/385af9d2de3a8769e0ca4970a24f0275" alt="White Finnish and Swedish warning notice with a red no-entry hand pictogram, cable-tied to a yellow and red construction barrier in Helsinki, Finland">
+    <div class="credit">Photo: Henry Söderlund, Helsinki 2022 — Wikimedia Commons, CC BY 2.0</div>
+    <div class="headline">工事現場</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">フィンランド語</span><span class="t-word">Työmaa-alue. Asiattomilta pääsy kielletty</span></div>
+      <div class="t-line"><span class="t-lang">スウェーデン語</span><span class="t-word">Byggarbetsplats. Tillträde förbjudet för obehöriga</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">フィンランド</span>
+      <span class="tag">Draft · 2026-11-01</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇫🇮 フィンランド・ヘルシンキの工事現場のバリケードにあった掲示。
+フィンランド語・スウェーデン語の2言語で書かれています。
+和訳:工事現場。関係者以外立入禁止
+
+【併記の理由】スウェーデン語統治の歴史で2言語が公用語
+
+Photo: Henry Söderlund — Wikimedia Commons, CC BY 2.0</pre></div>
+  </div>
+
+  <div class="entry">
+  <article class="card" data-no="016" style="--card-accent:#2e7d32;">
+    <img class="photo" src="/_blob/97ba8cd47d55fa8c02d62ed30bad7481" style="aspect-ratio:auto;max-height:520px;object-fit:contain;background:#2a2a26;" alt="Green trilingual wildlife-refuge sign with two white deer, hung on a log fence in a spruce forest near Büllingen, Belgium, with French, German and Dutch no-entry text">
+    <div class="credit">Photo: FrDr, Büllingen 2022 — Wikimedia Commons, CC BY-SA 4.0</div>
+    <div class="headline">静穏区域</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">フランス語</span><span class="t-word">Zone de quiétude pour la faune — Passage non autorisé</span></div>
+      <div class="t-line"><span class="t-lang">ドイツ語</span><span class="t-word">Wildruhezone — Zugang verboten</span></div>
+      <div class="t-line"><span class="t-lang">オランダ語</span><span class="t-word">Rustgebied voor fauna — Verboden toegang</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">ベルギー</span>
+      <span class="tag">Draft · 2026-11-02</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🇧🇪 ベルギー東部ビュリンゲンの森にあった、野生動物の保護区を示す標識。
+フランス語・ドイツ語・オランダ語の3言語で書かれています。
+和訳:野生動物の静穏区域。立入禁止
+
+【併記の理由】1919年編入の東部ドイツ語圏と国の2言語
+
+Photo: FrDr — Wikimedia Commons, CC BY-SA 4.0</pre></div>
+  </div>
+
+  <div class="entry">
+  <article class="card" data-no="017" style="--card-accent:#2f6b3f;">
+    <img class="photo" src="/_blob/7eb4b90981f0c2504441cd23c64853e8" style="aspect-ratio:auto;max-height:520px;object-fit:contain;background:#2a2a26;" alt="Old green wire-mesh border welcome sign with a red Welsh dragon above the words CROESO I GYMRU and WELCOME TO WALES, at Saltney near the Wales–England border">
+    <div class="credit">Photo: John S Turner, Saltney, Flintshire 2006 — Wikimedia Commons, CC BY-SA 2.0</div>
+    <div class="headline">ようこそ</div>
+    <div class="translations">
+      <div class="t-line"><span class="t-lang">ウェールズ語</span><span class="t-word">Croeso i Gymru</span></div>
+      <div class="t-line"><span class="t-lang">英語</span><span class="t-word">Welcome to Wales</span></div>
+    </div>
+    <div class="meta-row">
+      <span class="country">ウェールズ(英国)</span>
+      <span class="tag">Draft · 2026-11-03</span>
+    </div>
+  </article>
+  <div class="copy"><div class="copy-h"><span>説明テキスト(コピー用)</span><button class="cp" type="button">コピー</button></div><pre>🏴󠁧󠁢󠁷󠁬󠁳󠁿 ウェールズとイングランドの国境近く、ソルトニーにあった歓迎看板。赤いドラゴンが目印です。
+ウェールズ語・英語の2言語で書かれています。
+和訳:ウェールズへようこそ
+
+【併記の理由】ウェールズ語と英語はともに公用語
+
+Photo: John S Turner — Wikimedia Commons, CC BY-SA 2.0</pre></div>
+  </div>
+
+</div>
+
+<footer>sign.sign — 毎日の自動ドラフト・公開前に人の目で確認</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+(async function(){
+  document.querySelectorAll('.cp').forEach(function(b){
+    b.addEventListener('click', async function(){
+      var t=b.closest('.copy').querySelector('pre').textContent, ok=false;
+      try{ await navigator.clipboard.writeText(t); ok=true; }catch(e){
+        try{ var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); ok=document.execCommand('copy'); ta.remove(); }catch(e2){}
+      }
+      var o=b.textContent; b.textContent=ok?'コピーしました':'選択してコピー'; setTimeout(function(){b.textContent=o;},1600);
+    });
+  });
+  var downloads = await claude.use('downloads');
+  if(!downloads) return;
+  document.querySelectorAll('.dl-img').forEach(function(btn){
+    btn.addEventListener('click', async function(){
+      btn.disabled=true; var old=btn.textContent; btn.textContent='準備中…';
+      try{ var r=await fetch(btn.closest('figure').querySelector('img').src); var blob=await r.blob();
+        await downloads.save({filename: btn.dataset.name, data: blob}); }catch(e){}
+      btn.textContent=old; btn.disabled=false;
+    });
+  });
+  document.querySelectorAll('.card').forEach(function(card){
+    var no=card.dataset.no||'000';
+    var btn=document.createElement('button'); btn.className='dl'; btn.type='button'; btn.dataset.ig='1'; btn.textContent='カードをダウンロード (PNG)';
+    var pbtn=document.createElement('button'); pbtn.className='dl'; pbtn.type='button'; pbtn.dataset.ig='1'; pbtn.textContent='参考写真だけダウンロード';
+    var mr=card.querySelector('.meta-row'); mr.before(btn); mr.before(pbtn);
+    btn.addEventListener('click', async function(){
+      btn.disabled=true; var old=btn.textContent; btn.textContent='作成中…';
+      try{
+        if(document.fonts && document.fonts.ready) await document.fonts.ready;
+        var canvas=await html2canvas(card,{scale:2,useCORS:true,backgroundColor:getComputedStyle(card).backgroundColor,ignoreElements:function(el){return !!(el.dataset&&el.dataset.ig);}});
+        var blob=await new Promise(function(res){canvas.toBlob(res,'image/png');});
+        await downloads.save({filename:'sign-sign-no'+no+'.png',data:blob});
+      }catch(e){}
+      btn.textContent=old; btn.disabled=false;
+    });
+    pbtn.addEventListener('click', async function(){
+      pbtn.disabled=true; var old=pbtn.textContent; pbtn.textContent='準備中…';
+      try{
+        var r=await fetch(card.querySelector('.photo').src); var blob=await r.blob();
+        var ext=(blob.type.split('/')[1]||'jpg').replace('jpeg','jpg');
+        await downloads.save({filename:'sign-sign-no'+no+'-photo.'+ext,data:blob});
+      }catch(e){}
+      pbtn.textContent=old; pbtn.disabled=false;
+    });
+  });
+})();
+</script>
+</body></html>
+
+</body></html>
