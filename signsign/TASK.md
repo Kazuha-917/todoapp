@@ -68,7 +68,12 @@ If no real, clearly licensed photo can be found after reasonable search, move to
 
 Download into the scratchpad (not the repo):
 `curl -sL -A "signsign-daily-draft/1.0" "<upload.wikimedia.org URL>" -o <scratchpad>/sign-photo.<ext>`
-On HTTP 429, wait and retry, or use a thumbnail URL (`/thumb/.../1280px-<name>`). Look at the downloaded image with Read to confirm it is the sign.
+On HTTP 429, wait and retry, or use a thumbnail URL (`/thumb/.../1280px-<name>`).
+If curl keeps getting 429 (Wikimedia often blocks this container's IP), use the `web-fetch` agent instead:
+ask it to read the Commons category/file pages (author, license, date, description, image URL), then to fetch the
+`/thumb/.../1280px-<name>` image URL. The harness note after its report gives the local file the image bytes were saved to;
+copy that file into the scratchpad. (This worked on 2026-11-05.)
+Look at the downloaded image with Read to confirm it is the sign.
 
 ## 3. Read the sign, pick the headline
 Base everything on what the photo ACTUALLY shows — read the real text in each language from the photo and the file description. Do not guess.
